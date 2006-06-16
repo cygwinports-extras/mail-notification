@@ -1,0 +1,10 @@
+category: Gnome Mail
+requires: cygwin ORBit2 eel2 gmime2 libbonobo2 libsasl2 openssl xorg-x11-base
+sdesc: "New mail notification system tray icon"
+ldesc: "Mail Notification is a status icon (aka tray icon) that
+informs you if you have new mail.
+
+It works with system trays implementing the freedesktop.org
+System Tray Specification, such as the GNOME Panel
+Notification Area, the Xfce Notification Area and the KDE
+System Tray."
