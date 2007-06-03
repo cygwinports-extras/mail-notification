@@ -9,27 +9,42 @@ Notification Area, the Xfce Notification Area and the KDE
 System Tray.
 
 Runtime requirements:
-  cygwin-1.5.18-1
-  ORBit2-2.12.3-1
-  eel2-2.12.2-1
-  gmime2-2.1.16-1
-  libbonobo2-2.10.1-1
+  cygwin-1.5.24-2
+  GConf2-2.16.1-1
+  ORBit2-2.14.7-1
+  eel2-2.16.3-2
+  gdk-pixbuf2-2.10.12-1
+  glib2-2.12.12-1
+  gmime2-2.2.9-1
+  gnome-vfs2-2.16.3-1
+  gtk2-x11-2.10.12-1
+  libX11_6-1.1.1-1
+  libbonobo2-2.16.0-1
+  libgetaddrinfo0-1.6.3-2
+  libglade2-2.6.0-1
+  libgnome2-2.16.0-1
+  libgnomeui2-2.16.1-1
+  libintl8-0.15-1
+  libnotify-0.4.4-1
   libsasl2-2.1.19-3
-  openssl-0.9.8a-1
-  xorg-x11-bin-dlls-6.8.2.0-1
+  libxml2-2.6.28-2
+  openssl-0.9.8e-3
+  pango-1.16.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  cygwin-1.5.18-1
-  autoconf2.5-2.59-3
-  automake1.9-1.9.6-1
-  binutils-20050610-1
-  gawk-3.1.5-1
-  gcc-core-3.4.4-1
-  intltool-0.33-1
-  libtool1.5-1.5.20-1
-  make-3.80-1
-  sed-4.1.4-1
+  cygwin-1.5.24-2
+  autoconf2.5-2.61-1
+  automake1.9-1.9.6-2
+  binutils-20060817-1
+  cygport-0.2.11-1
+  gawk-3.1.5-4
+  gcc-core-3.4.4-3
+  intltool-0.35.5-1
+  libtool1.5-1.5.23a-2
+  make-3.81-1
+  pkg-config-0.21-1
+  sed-4.1.5-2
 
 Canonical website:
   http://mailnotify.nongnu.org/
@@ -40,15 +55,15 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack mail-notification-2.0-X-src.tar.bz2
+  unpack mail-notification-4.0-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  ./mail-notification-2.0-X.sh all
+  cygport ./mail-notification-4.0-X.cygport all
 
 This will create:
-  /usr/src/mail-notification-2.0-X-src.tar.bz2
-  /usr/src/mail-notification-2.0-X.tar.bz2
+  /usr/src/mail-notification-4.0-X-src.tar.bz2
+  /usr/src/mail-notification-4.0-X.tar.bz2
 
 -------------------------------------------
 
@@ -57,19 +72,17 @@ Files included in the binary package:
   /etc/gconf/schemas/mail-notification.schemas
   /etc/postinstall/mail-notification.sh
   /etc/preremove/mail-notification.sh
-  /etc/sound/events/mail-notification.soundlist
+  /etc/xdg/autostart/mail-notification.desktop
   /usr/bin/mail-notification.exe
   /usr/lib/bonobo/servers/GNOME_MailNotification.server
   /usr/share/applications/mail-notification-properties.desktop
-  /usr/share/applications/mail-notification.desktop
-  /usr/share/doc/Cygwin/mail-notification-2.0.README
-  /usr/share/doc/mail-notification-2.0/AUTHORS
-  /usr/share/doc/mail-notification-2.0/COPYING
-  /usr/share/doc/mail-notification-2.0/INSTALL
-  /usr/share/doc/mail-notification-2.0/NEWS
-  /usr/share/doc/mail-notification-2.0/README
-  /usr/share/doc/mail-notification-2.0/TODO
-  /usr/share/doc/mail-notification-2.0/getaddrinfo.README
+  /usr/share/doc/Cygwin/mail-notification-4.0.README
+  /usr/share/doc/mail-notification-4.0/AUTHORS
+  /usr/share/doc/mail-notification-4.0/COPYING
+  /usr/share/doc/mail-notification-4.0/INSTALL
+  /usr/share/doc/mail-notification-4.0/NEWS
+  /usr/share/doc/mail-notification-4.0/README
+  /usr/share/doc/mail-notification-4.0/TODO
   /usr/share/gnome/help/mail-notification/C/documentation-license.xml
   /usr/share/gnome/help/mail-notification/C/figures/mail.png
   /usr/share/gnome/help/mail-notification/C/figures/mailbox-emblem-error.png
@@ -77,30 +90,38 @@ Files included in the binary package:
   /usr/share/gnome/help/mail-notification/C/figures/mailbox-emblem-unknown.png
   /usr/share/gnome/help/mail-notification/C/mail-notification.xml
   /usr/share/gnome/help/mail-notification/C/software-license.xml
+  /usr/share/icons/hicolor/16x16/apps/mail-notification.png
+  /usr/share/icons/hicolor/22x22/apps/mail-notification.png
+  /usr/share/icons/hicolor/24x24/apps/mail-notification.png
+  /usr/share/icons/hicolor/32x32/apps/mail-notification.png
+  /usr/share/icons/hicolor/48x48/apps/mail-notification.png
+  /usr/share/icons/hicolor/scalable/apps/mail-notification.svg
   /usr/share/locale/bg/LC_MESSAGES/mail-notification.mo
+  /usr/share/locale/ca/LC_MESSAGES/mail-notification.mo
+  /usr/share/locale/cs/LC_MESSAGES/mail-notification.mo
   /usr/share/locale/de/LC_MESSAGES/mail-notification.mo
   /usr/share/locale/fr/LC_MESSAGES/mail-notification.mo
+  /usr/share/locale/ja/LC_MESSAGES/mail-notification.mo
+  /usr/share/locale/nl/LC_MESSAGES/mail-notification.mo
   /usr/share/locale/pl/LC_MESSAGES/mail-notification.mo
   /usr/share/locale/pt/LC_MESSAGES/mail-notification.mo
+  /usr/share/locale/pt_BR/LC_MESSAGES/mail-notification.mo
   /usr/share/locale/ru/LC_MESSAGES/mail-notification.mo
   /usr/share/locale/sr/LC_MESSAGES/mail-notification.mo
   /usr/share/locale/sr@Latn/LC_MESSAGES/mail-notification.mo
-  /usr/share/mail-notification/ui/edit-toolbars-dialog.glade
+  /usr/share/locale/sv/LC_MESSAGES/mail-notification.mo
   /usr/share/mail-notification/ui/gmail.png
-  /usr/share/mail-notification/ui/hand-open.png
   /usr/share/mail-notification/ui/logo.png
-  /usr/share/mail-notification/ui/mail-summary-popup.glade
   /usr/share/mail-notification/ui/mailbox-properties-dialog.glade
-  /usr/share/mail-notification/ui/main-window.png
-  /usr/share/mail-notification/ui/menus.xml
   /usr/share/mail-notification/ui/properties-dialog.glade
-  /usr/share/mail-notification/ui/toolbars.xml
   /usr/share/omf/mail-notification/mail-notification-C.omf
-  /usr/share/pixmaps/mail-notification.png
 
 ------------------
 
 Port Notes:
+
+----- version 4.0-1 -----
+Version bump.
 
 ----- version 2.0-1 -----
 Initial release for Cygwin.
