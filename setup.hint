@@ -1,5 +1,5 @@
 category: Gnome Mail
-requires: cygwin GConf2 ORBit2 eel2 glib2 gmime2 gnome-vfs2 gtk2-x11 libX11_6 libbonobo2 libgetaddrinfo0 libglade2 libgnome2 libgnomeui2 libintl8 libnotify libsasl2 libxml2 openssl pango
+requires: cygwin GConf2 glib2 gdk-pixbuf2 gmime2 gnome-keyring gnome-vfs2 gtk2-x11 libX11_6 libdbus-glib_1_2 libdbus1_3 libgetaddrinfo0 libglade2 libgnome2 libgnomeui2 libintl8 libnotify libsasl2 libxml2 openssl pango getlive
 sdesc: "New mail notification system tray icon"
 ldesc: "Mail Notification is a status icon (aka tray icon) that
 informs you if you have new mail.
