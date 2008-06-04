@@ -1,0 +1,30 @@
+DESCRIPTION="GNOME mail notification"
+HOMEPAGE="http://www.nongnu.org/mailnotify/"
+SRC_URI="http://download.savannah.gnu.org/releases/mailnotify/${P}.tar.bz2
+         http://download.savannah.gnu.org/releases/mailnotify/${P}.tar.bz2.sig"
+
+DIFF_EXCLUDES='*.out'
+
+src_compile() {
+	lndirs
+	cd ${B}
+	./jb configure \
+		destdir=${D} \
+		sysconfdir=/etc \
+		localstatedir=/var \
+		gconf-schemas-dir=/etc/gconf/schemas \
+		evolution=no \
+		ipv6=no \
+		install-gconf-schemas=no \
+		update-icon-cache=no \
+		cflags="${CFLAGS}" \
+		cppflags="-include getaddrinfo.h" \
+		libs=-lgetaddrinfo \
+		|| error "configure failed"
+	./jb build || error "build failed"
+}
+
+src_install() {
+	cd ${B}
+	./jb install || error "install failed"
+}
