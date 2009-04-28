@@ -3,6 +3,10 @@ HOMEPAGE="http://www.nongnu.org/mailnotify/"
 SRC_URI="http://download.savannah.gnu.org/releases/mailnotify/${P}.tar.bz2
          http://download.savannah.gnu.org/releases/mailnotify/${P}.tar.bz2.sig"
 
+PATCH_URI="5.4-as-needed.patch
+           5.4-exeext.patch
+           5.4-update-icon-cache.patch"
+
 DIFF_EXCLUDES='*.out'
 
 src_compile() {
@@ -14,12 +18,10 @@ src_compile() {
 		localstatedir=/var \
 		gconf-schemas-dir=/etc/gconf/schemas \
 		evolution=no \
-		ipv6=no \
 		install-gconf-schemas=no \
 		update-icon-cache=no \
 		cflags="${CFLAGS}" \
-		cppflags="-include getaddrinfo.h" \
-		libs=-lgetaddrinfo \
+		ldflags="${LDFLAGS} -Wl,--export-all-symbols" \
 		|| error "configure failed"
 	./jb build || error "build failed"
 }

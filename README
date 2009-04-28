@@ -9,39 +9,39 @@ Notification Area, the Xfce Notification Area and the KDE
 System Tray.
 
 Runtime requirements:
-  cygwin-1.5.25-11
-  GConf2-2.22.0-1
-  gdk-pixbuf2-2.12.9-1
+  cygwin-1.7.0-45
+  fetchyahoo
   getlive
-  glib2-2.16.3-1
-  gmime2-2.2.20-1
-  gnome-keyring-2.22.2-1
-  gnome-vfs2-2.22.0-1
-  gtk2-x11-2.12.9-1
-  libX11_6-1.1.3-1
-  libdbus-glib_1_2-0.74-1
-  libdbus1_3-1.0.2-1
-  libgetaddrinfo0-1.6.3-2
-  libglade2-2.6.2-1
-  libgnome2-2.22.0-1
-  libgnomeui2-2.22.1-1
-  libintl8-0.15-1
-  libnotify-0.4.4-1
+  libdbus-glib_1_2-0.80-10
+  libdbus1_3-1.2.12-10
+  libgconf2_4-2.26.0-1
+  libgdk_pixbuf2.0_0-2.16.1-1
+  libglade2.0_0-2.6.4-1
+  libglib2.0_0-2.20.1-1
+  libgmime2.0_2-2.2.23-10
+  libgnome-keyring0-2.26.0-1
+  libgnome2_0-2.26.0-1
+  libgnomeui2_0-2.24.1-1
+  libgnomevfs2_0-2.24.1-1
+  libgtk2.0_0-2.16.1-1
+  libintl8-0.17-10
+  libnotify1-0.4.5-10
+  libpango1.0_0-1.24.1-1
   libsasl2-2.1.19-3
-  libxml2-2.6.32-1
-  openssl-0.9.8g-1
-  pango-1.20.3-1
+  libX11_6-1.2-10
+  libxml2-2.7.3-10
+  openssl-0.9.8k-2
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-20060817-1
-  cygport-0.3.11-1
-  gawk-3.1.6-1
-  gcc-core-3.4.4-3
-  gettext-devel-0.15-1
-  intltool-0.37.1-1
-  make-3.81-1
-  pkg-config-0.21-1
+  binutils-20080624-2
+  cygport-0.9.6-1
+  gawk-3.1.6-2
+  gcc4-core-4.3.2-2
+  gettext-devel-0.17-10
+  intltool-0.40.6-1
+  make-3.81-2
+  pkg-config-0.23b-10
   sed-4.1.5-2
 
 Canonical website:
@@ -73,12 +73,12 @@ Files included in the binary package:
   /etc/xdg/autostart/mail-notification.desktop
   /usr/bin/mail-notification.exe
   /usr/share/applications/mail-notification-properties.desktop
-  /usr/share/doc/mail-notification-5.4/AUTHORS
-  /usr/share/doc/mail-notification-5.4/COPYING
-  /usr/share/doc/mail-notification-5.4/COPYING-DOCS
-  /usr/share/doc/mail-notification-5.4/NEWS
-  /usr/share/doc/mail-notification-5.4/README
-  /usr/share/doc/mail-notification-5.4/TODO
+  /usr/share/doc/mail-notification/AUTHORS
+  /usr/share/doc/mail-notification/COPYING
+  /usr/share/doc/mail-notification/COPYING-DOCS
+  /usr/share/doc/mail-notification/NEWS
+  /usr/share/doc/mail-notification/README
+  /usr/share/doc/mail-notification/TODO
   /usr/share/gnome/help/mail-notification/C/documentation-license.xml
   /usr/share/gnome/help/mail-notification/C/figures/mail.png
   /usr/share/gnome/help/mail-notification/C/mail-notification.xml
@@ -117,23 +117,8 @@ Files included in the binary package:
 
 Port Notes:
 
------ version 5.4-1 -----
-Version bump.
-
------ version 5.3-1 -----
-Version bump.
-
------ version 5.0-1 -----
-Version bump.
-
------ version 4.1-1 -----
-Version bump.
-
------ version 4.0-1 -----
-Version bump.
-
------ version 2.0-1 -----
-Initial release for Cygwin.
+----- version 5.4-10 -----
+Initial release for Cygwin 1.7.
 
 
 Cygwin port maintained by:
