@@ -1,0 +1,59 @@
+--- origsrc/mail-notification-5.4/jbsrc/jb.c	2009-12-27 20:32:54.535410600 -0600
++++ src/mail-notification-5.4/jbsrc/jb.c	2009-12-27 20:34:21.543387100 -0600
+@@ -173,7 +173,7 @@ jb_package_configure (void)
+   jb_require_packages("GNOME", "gnome", "glib-2.0 >= 2.14 gthread-2.0 gconf-2.0 >= 2.4.0 gtk+-2.0 >= 2.12 libgnomeui-2.0 >= 2.14.0 gnome-vfs-2.0 libglade-2.0 libxml-2.0 libnotify >= 0.4.1");
+   jb_require_packages("D-Bus", "dbus", "dbus-glib-1");
+ 
+-  jb_check_packages_for_options("GMime", "gmime", "gmime-2.0 >= 2.2.7",
++  jb_check_packages_for_options("GMime", "gmime", "gmime-2.4",
+ 				"hotmail",
+ 				"imap",
+ 				"maildir",
+--- origsrc/mail-notification-5.4/src/mn-base-mbox-mailbox-backend.gob	2008-05-22 10:45:35.000000000 -0500
++++ src/mail-notification-5.4/src/mn-base-mbox-mailbox-backend.gob	2009-12-27 20:43:59.178426000 -0600
+@@ -140,7 +140,7 @@ class MN:Base:Mbox:Mailbox:Backend from 
+ 	    mime_message = g_mime_parser_construct_message(parser);
+ 	    if (mime_message)
+ 	      {
+-		if (g_mime_message_get_header(mime_message, "X-Mozilla-Status"))
++		if (g_mime_object_get_header(mime_message, "X-Mozilla-Status"))
+ 		  {
+ #if WITH_MOZILLA
+ 		    type = MN_TYPE_MOZILLA_MAILBOX_BACKEND;
+--- origsrc/mail-notification-5.4/src/mn-message-mime.c	2008-05-22 10:45:35.000000000 -0500
++++ src/mail-notification-5.4/src/mn-message-mime.c	2009-12-27 20:44:39.723745000 -0600
+@@ -33,12 +33,12 @@ is_spam (GMimeMessage *mime_message)
+   g_return_val_if_fail(GMIME_IS_MESSAGE(mime_message), FALSE);
+ 
+   /* SpamAssassin */
+-  spam = g_mime_message_get_header(mime_message, "X-Spam-Status");
++  spam = g_mime_object_get_header(mime_message, "X-Spam-Status");
+   if (spam && mn_ascii_str_case_has_prefix(spam, "yes"))
+     return TRUE;
+ 
+   /* bogofilter */
+-  spam = g_mime_message_get_header(mime_message, "X-Bogosity");
++  spam = g_mime_object_get_header(mime_message, "X-Bogosity");
+   if (spam && mn_ascii_str_case_has_prefix(spam, "yes"))
+     return TRUE;
+ 
+@@ -89,7 +89,7 @@ mn_message_new_from_mime_message_full (G
+     {
+       const char *status;
+ 
+-      status = g_mime_message_get_header(mime_message, "Status");
++      status = g_mime_object_get_header(mime_message, "Status");
+       if (status && strchr(status, 'R'))
+ 	return NULL;		/* the message was read */
+       else if (status && strchr(status, 'O'))
+--- origsrc/mail-notification-5.4/src/mn-mozilla-mailbox-backend.gob	2008-05-22 10:45:36.000000000 -0500
++++ src/mail-notification-5.4/src/mn-mozilla-mailbox-backend.gob	2009-12-27 20:43:39.672310300 -0600
+@@ -69,7 +69,7 @@ class MN:Mozilla:Mailbox:Backend from MN
+   {
+     const char *header;
+ 
+-    header = g_mime_message_get_header(mime_message, header_name);
++    header = g_mime_object_get_header(mime_message, header_name);
+     if (header && mn_str_ishex(header))
+       return strtol(header, NULL, 16);
+     else

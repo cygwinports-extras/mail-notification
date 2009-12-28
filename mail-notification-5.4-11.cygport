@@ -4,7 +4,7 @@ SRC_URI="http://download.savannah.gnu.org/releases/mailnotify/${P}.tar.bz2
          http://download.savannah.gnu.org/releases/mailnotify/${P}.tar.bz2.sig"
 
 PATCH_URI="5.4-as-needed.patch
-           5.4-exeext.patch
+           5.4-gmime24.patch
            5.4-update-icon-cache.patch"
 
 DIFF_EXCLUDES='*.out'

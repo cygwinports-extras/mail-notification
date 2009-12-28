@@ -13,8 +13,6 @@
  #define MN_WARNING_CFLAGS \
    "-Wall "				\
    "-Wformat-y2k "			\
---- origsrc/mail-notification-5.4/jbsrc/jb.c	2008-05-22 10:47:04.000000000 -0500
-+++ src/mail-notification-5.4/jbsrc/jb.c	2008-05-23 14:08:33.906250000 -0500
 @@ -411,7 +420,7 @@
  					"GETTEXT_PACKAGE", "$package",
  					NULL);
