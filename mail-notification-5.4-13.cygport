@@ -11,6 +11,7 @@ PATCH_URI="
 	mirror://portage/mail-client/${PN}/files/${P}-sasl_encode64.patch
 	mirror://portage/mail-client/${PN}/files/${P}-gmime.patch
 	mirror://portage/mail-client/${PN}/files/${P}-asneeded.patch
+	mirror://portage/mail-client/${PN}/files/${P}-icons.patch
 "
 
 DIFF_EXCLUDES='*.out'
@@ -26,7 +27,7 @@ src_compile() {
 		install-gconf-schemas=no \
 		cflags="${CFLAGS}" \
 		ldflags="${LDFLAGS} -Wl,--export-all-symbols" \
-		libs="$(pkg-config --variable=privlibdir evolution-plugin) -levolution-mail -leshell" \
+		libs="-L$(pkg-config --variable=privlibdir evolution-plugin) -levolution-mail -leshell" \
 		|| error "configure failed"
 	./jb build || error "build failed"
 }
