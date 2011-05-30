@@ -1,0 +1,57 @@
+DESCRIPTION="GNOME mail notification"
+HOMEPAGE="http://www.nongnu.org/mailnotify/"
+SRC_URI="http://download.savannah.gnu.org/releases/mailnotify/${P}.tar.bz2
+         http://download.savannah.gnu.org/releases/mailnotify/${P}.tar.bz2.sig"
+
+# all patches except for jb-as-needed from Fedora's 5.4-36
+PATCH_URI="
+	5.4-evolution.patch
+	5.4-gmime.patch
+	5.4-sasl_encode64.patch
+	5.4-camel_headers.patch
+	5.4-icons.patch
+	5.4-weak.patch
+	5.4-popup-attach.patch
+	5.4-kde-trayicon.patch
+	5.4-evolution-3-0-support.patch
+	5.4-gtk3-support.patch
+	5.4-add-fallback-icon.patch
+	5.4-jb-as-needed.patch
+"
+
+DIFF_EXCLUDES='*.out'
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook () {
+	pushd ui
+	gtk-builder-convert mailbox-properties-dialog.glade mailbox-properties-dialog.ui
+	gtk-builder-convert properties-dialog.glade properties-dialog.ui
+	sed -i s@'<property name="has_separator">False</property>'@@ mailbox-properties-dialog.ui
+	sed -i s@'<property name="has_separator">False</property>'@@ properties-dialog.ui
+	popd
+}
+
+src_compile() {
+	lndirs
+	cd ${B}
+	./jb configure \
+		destdir=${D} \
+		sysconfdir=/etc \
+		localstatedir=/var \
+		gconf-schemas-dir=/etc/gconf/schemas \
+		install-gconf-schemas=no \
+		cflags="${CFLAGS}" \
+		ldflags="${LDFLAGS} -Wl,--export-all-symbols" \
+		libs="-L$(pkg-config --variable=privlibdir evolution-plugin-3.0) -levolution-mail -leshell" \
+		|| error "configure failed"
+	./jb build || error "build failed"
+}
+
+src_install() {
+	cd ${B}
+	./jb install || error "install failed"
+
+	rm -fr ${D}/usr/share/${PN}/*.glade
+	insinto /usr/share/${PN}
+	doins ${S}/ui/*.ui
+}
