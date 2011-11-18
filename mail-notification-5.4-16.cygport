@@ -1,23 +1,30 @@
 DESCRIPTION="GNOME mail notification"
 HOMEPAGE="http://www.nongnu.org/mailnotify/"
-SRC_URI="http://download.savannah.gnu.org/releases/mailnotify/${P}.tar.bz2
-         http://download.savannah.gnu.org/releases/mailnotify/${P}.tar.bz2.sig"
+#SRC_URI="mirror://savannah/mailnotify/${P}.tar.bz2"
+SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
-# all patches except for jb-as-needed from Fedora's 5.4-36
 PATCH_URI="
-	5.4-evolution.patch
-	5.4-gmime.patch
-	5.4-sasl_encode64.patch
-	5.4-camel_headers.patch
-	5.4-icons.patch
-	5.4-weak.patch
-	5.4-popup-attach.patch
-	5.4-kde-trayicon.patch
-	5.4-evolution-3-0-support.patch
-	5.4-gtk3-support.patch
-	5.4-add-fallback-icon.patch
+	fedora/mail-notification-5.4-evolution.patch
+	fedora/mail-notification-5.4-gmime.patch
+	fedora/mail-notification-5.4-sasl_encode64.patch
+	fedora/mail-notification-5.4-evolution-gtkhtml.patch
+	fedora/mail-notification-5.4-camel_headers.patch
+	fedora/mail-notification-5.4-icons.patch
+	fedora/mail-notification-5.4-weak.patch
+	fedora/mail-notification-5.4-popup-attach.patch
+	fedora/mail-notification-5.4-kde-trayicon.patch
+	fedora/mail-notification-5.4-evolution-3-0-support.patch
+	fedora/mail-notification-5.4-gtk3-support.patch
+	fedora/mail-notification-5.4-add-fallback-icon.patch
+	fedora/popup-markup.patch
 	5.4-jb-as-needed.patch
+	5.4-evolution-3-2.patch
 "
+
+PKG_NAMES="${PN} evolution-${PN}"
+PKG_HINTS="setup evolution"
+mail_notification_CONTENTS="etc/ usr/bin/ usr/share/"
+evolution_mail_notification_CONTENTS="usr/lib/evolution/"
 
 DIFF_EXCLUDES='*.out'
 

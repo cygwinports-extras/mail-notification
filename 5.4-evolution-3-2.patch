@@ -1,0 +1,22 @@
+--- origsrc/mail-notification-5.4/src/mn-evolution-plugin.c	2011-11-18 15:14:36.232866400 -0600
++++ src/mail-notification-5.4/src/mn-evolution-plugin.c	2011-11-18 15:20:19.645508400 -0600
+@@ -254,7 +254,9 @@ org_jylefort_mail_notification_message_r
+ {
+   if (evo_server)
+     {
+-#if EDS_CHECK_VERSION(2,91,0)
++#if EDS_CHECK_VERSION(3,2,0)
++      char *url = e_mail_folder_uri_from_folder(message->folder);
++#elif EDS_CHECK_VERSION(2,91,0)
+       const char *url = camel_folder_get_uri(message->folder);
+ #else
+       char *url = mail_tools_folder_to_url(message->folder);
+@@ -262,7 +264,7 @@ org_jylefort_mail_notification_message_r
+ 
+       mn_evolution_server_message_reading(evo_server, url);
+ 
+-#if !EDS_CHECK_VERSION(2,91,0)
++#if !EDS_CHECK_VERSION(2,91,0) || EDS_CHECK_VERSION(3,2,0)
+       g_free(url);
+ #endif
+     }
