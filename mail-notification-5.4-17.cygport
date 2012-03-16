@@ -16,9 +16,10 @@ PATCH_URI="
 	fedora/mail-notification-5.4-evolution-3-0-support.patch
 	fedora/mail-notification-5.4-gtk3-support.patch
 	fedora/mail-notification-5.4-add-fallback-icon.patch
+	fedora/mail-notification-5.4-make-properties-dialog-resizable.patch
+	fedora/mail-notification-5.4-prevent-memory-corruption-in-tooltips-code.patch
 	fedora/popup-markup.patch
 	5.4-jb-as-needed.patch
-	5.4-evolution-3-2.patch
 "
 
 PKG_NAMES="${PN} evolution-${PN}"
