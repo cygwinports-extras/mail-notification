@@ -18,6 +18,8 @@ PATCH_URI="
 	fedora/mail-notification-5.4-add-fallback-icon.patch
 	fedora/mail-notification-5.4-make-properties-dialog-resizable.patch
 	fedora/mail-notification-5.4-prevent-memory-corruption-in-tooltips-code.patch
+	fedora/mail-notification-5.4-prevent-stack-overflow-in-verify-ssl-certificate-function.patch
+	fedora/mail-notification-5.4-libemail.patch
 	fedora/popup-markup.patch
 	5.4-jb-as-needed.patch
 "
@@ -30,12 +32,10 @@ evolution_mail_notification_CONTENTS="usr/lib/evolution/"
 DIFF_EXCLUDES='*.out'
 
 CYGPORT_USE_UNSTABLE_API=1
-src_patch_hook () {
+src_unpack_hook () {
 	pushd ui
 	gtk-builder-convert mailbox-properties-dialog.glade mailbox-properties-dialog.ui
 	gtk-builder-convert properties-dialog.glade properties-dialog.ui
-	sed -i s@'<property name="has_separator">False</property>'@@ mailbox-properties-dialog.ui
-	sed -i s@'<property name="has_separator">False</property>'@@ properties-dialog.ui
 	popd
 }
 

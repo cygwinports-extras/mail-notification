@@ -1,5 +1,5 @@
 category: Gnome Mail
-requires: evolution mail-notification libcamel1.2_29 libdbus-glib_1_2 libdbus1_3 libglib2.0_0 libgtk3_0 libintl8
+requires: evolution mail-notification libcamel1.2_33 libdbus-glib_1_2 libdbus1_3 libglib2.0_0 libgtk3_0 libintl8
 external-source: mail-notification
 sdesc: "GNOME Evolution new mail notification plugin"
 ldesc: "Mail Notification is a status icon (aka tray icon) that
