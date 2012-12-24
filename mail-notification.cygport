@@ -1,0 +1,51 @@
+NAME="mail-notification"
+VERSION=5.4
+RELEASE=19
+CATEGORY="GNOME Mail"
+SUMMARY="New mail notification system tray icon"
+DESCRIPTION="Mail Notification is a status icon (aka tray icon) that informs
+you if you have new mail. It works with system trays implementing the
+freedesktop.org System Tray Specification, such as the GNOME Panel Notification
+Area, the Xfce Notification Area and the KDE System Tray."
+#HOMEPAGE="http://www.nongnu.org/mailnotify/"
+#SRC_URI="mirror://savannah/mailnotify/${P}.tar.bz2"
+HOMEPAGE="https://github.com/epienbroek/mail-notification"
+GIT_URI="git://github.com/epienbroek/mail-notification.git"
+GIT_REV=eab5c13
+inherit git
+
+PATCH_URI="5.4-jb-as-needed.patch"
+
+PKG_NAMES="${PN} evolution-${PN}"
+mail_notification_REQUIRES="fetchyahoo getlive"
+mail_notification_CONTENTS="etc/ usr/bin/ usr/share/"
+evolution_mail_notification_SUMMARY="GNOME Evolution new mail notification plugin"
+evolution_mail_notification_REQUIRES=${NAME}
+evolution_mail_notification_CONTENTS="usr/lib/evolution/"
+
+DIFF_EXCLUDES='*.out'
+
+src_compile() {
+	lndirs
+	cd ${B}
+	./jb configure \
+		destdir=${D} \
+		sysconfdir=/etc \
+		localstatedir=/var \
+		gconf-schemas-dir=/etc/gconf/schemas \
+		install-gconf-schemas=no \
+		cflags="${CFLAGS}" \
+		ldflags="${LDFLAGS} -Wl,--export-all-symbols" \
+		libs="-L$(pkg-config --variable=privlibdir evolution-plugin-3.0) -levolution-mail -leshell" \
+		|| error "configure failed"
+	./jb build || error "build failed"
+}
+
+src_install() {
+	cd ${B}
+	./jb install || error "install failed"
+
+	rm -fr ${D}/usr/share/${PN}/*.glade
+	insinto /usr/share/${PN}
+	doins ${S}/ui/*.ui
+}
