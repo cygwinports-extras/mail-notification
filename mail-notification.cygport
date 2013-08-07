@@ -1,6 +1,6 @@
 NAME="mail-notification"
 VERSION=5.4
-RELEASE=19
+RELEASE=20
 CATEGORY="GNOME Mail"
 SUMMARY="New mail notification system tray icon"
 DESCRIPTION="Mail Notification is a status icon (aka tray icon) that informs
@@ -11,12 +11,15 @@ Area, the Xfce Notification Area and the KDE System Tray."
 #SRC_URI="mirror://savannah/mailnotify/${P}.tar.bz2"
 HOMEPAGE="https://github.com/epienbroek/mail-notification"
 GIT_URI="git://github.com/epienbroek/mail-notification.git"
-GIT_REV=eab5c13
+GIT_REV=45d11d2
 inherit git
 
-PATCH_URI="5.4-jb-as-needed.patch"
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/mail-notification.git/plain/mail-notification-jb-gcc-format.patch
+	5.4-jb-as-needed.patch
+"
 
-PKG_NAMES="${PN} evolution-${PN}"
+PKG_NAMES="${NAME} evolution-${NAME}"
 mail_notification_REQUIRES="fetchyahoo getlive"
 mail_notification_CONTENTS="etc/ usr/bin/ usr/share/"
 evolution_mail_notification_SUMMARY="GNOME Evolution new mail notification plugin"
