@@ -1,6 +1,6 @@
 NAME="mail-notification"
 VERSION=5.4
-RELEASE=20
+RELEASE=21
 CATEGORY="GNOME Mail"
 SUMMARY="New mail notification system tray icon"
 DESCRIPTION="Mail Notification is a status icon (aka tray icon) that informs
@@ -19,7 +19,7 @@ PATCH_URI="
 	5.4-jb-as-needed.patch
 "
 
-PKG_NAMES="${NAME} evolution-${NAME}"
+PKG_NAMES="${NAME}" # evolution-${NAME}
 mail_notification_REQUIRES="fetchyahoo getlive"
 mail_notification_CONTENTS="etc/ usr/bin/ usr/share/"
 evolution_mail_notification_SUMMARY="GNOME Evolution new mail notification plugin"
@@ -39,7 +39,7 @@ src_compile() {
 		install-gconf-schemas=no \
 		cflags="${CFLAGS}" \
 		ldflags="${LDFLAGS} -Wl,--export-all-symbols" \
-		libs="-L$(pkg-config --variable=privlibdir evolution-plugin-3.0) -levolution-mail -leshell" \
+		evolution=no \
 		|| error "configure failed"
 	./jb build || error "build failed"
 }
